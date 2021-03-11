@@ -1,0 +1,47 @@
+.employeeDialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  overflow-y: scroll;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    button {
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  &__content {
+    position: relative;
+    border-radius: .25em;
+    padding: 1.5em 1.6em;
+    width: 510px;
+    height: 420px;
+    background-color: rgb(246, 246, 246);
+
+    &__title {
+      margin-bottom: .8em;
+      color: #28007E;
+    }
+
+    &__form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}

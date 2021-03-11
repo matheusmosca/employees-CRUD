@@ -1,0 +1,46 @@
+.confirmDialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  overflow-y: scroll;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+  overflow-wrap: break-word;
+  
+  &__content {
+    padding: 1em 1.2em;
+    height: 190px;
+    border-radius: .25em;
+    width: 350px;
+    background-color: rgb(246, 246, 246);
+    position: relative;
+    overflow-wrap: break-word;
+    
+    &__title {
+      margin-bottom: .7em;
+      font-weight: 500;
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: absolute;
+      bottom: 1em;
+      right: 1.2em;
+      width: 100%;
+      
+      button:nth-child(2) {
+        margin-left: .6em;
+      }
+    }
+
+  }
+}

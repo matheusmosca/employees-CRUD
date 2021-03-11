@@ -1,0 +1,52 @@
+.employeeTable {
+  margin-top: 2px;
+  table-layout: fixed;
+  width: 900px;
+  white-space: nowrap;
+  border-collapse:separate;
+  border-spacing:0 5px;
+
+  tr {
+    background-color: white;
+    border-radius: 1em;
+  }
+
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__header {
+    th {
+      text-align: left;
+      padding: 0.9em 1em 0.9em 0em;
+      font-weight: 500;
+      text-transform: uppercase;
+
+
+      &:nth-child(1) {
+        padding-left: 2em;
+      }
+    }
+    .rowEdit {
+      width: 7%;
+    }
+    .rowDelete {
+      width: 7%;
+    }
+    .rowName {
+      width: 20%;
+    }
+    .rowEmail {
+      width: 26%;
+    }
+    .rowTeam {
+      width: 20%;
+    }
+    .rowDate {
+      width: 20%;
+    }
+  }
+
+}

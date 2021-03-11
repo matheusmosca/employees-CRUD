@@ -1,0 +1,25 @@
+.button {
+  padding: .5em 1em;
+  background-color: #5B41FB;
+  color: white;
+  border: none;
+  border-radius: .25em;
+  font-size: 1rem;
+  font-weight: 500;
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  &:hover {
+    background-color: #321acc;
+    transition: .8s;
+  }
+
+  img {
+    height: 19px;
+    width: 19px;
+    margin-right: .6em;
+  }
+}

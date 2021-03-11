@@ -1,0 +1,21 @@
+.tableRow {
+  &__item {
+    padding: 0.9em 1em 0.9em 0em;
+    border-radius: 3em;
+
+    &:nth-child(1) {
+      padding-left: 2em;
+    }
+  }
+
+  &--edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  // &--delete {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+}

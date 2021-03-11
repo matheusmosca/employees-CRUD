@@ -1,0 +1,12 @@
+.homepage {
+  min-height: 100%;
+    
+  &__tableWrapper {
+    min-height: calc(100vh - 210px);
+    padding: 4.5em 0 3em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(238, 238, 238);
+  }
+}
