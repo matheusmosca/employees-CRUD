@@ -16,9 +16,7 @@ export function EmployeeTable() {
   const [fetchAgain, setFetchAgain] = useState(true)
 
   const handleOpenEmployeeDialog = (data) => { 
-    if (data && data.id) {
-      setEmployeeData(data)
-    }
+    setEmployeeData(data)
     setOpenEmployeeDialog(true)
   }
 
@@ -26,6 +24,7 @@ export function EmployeeTable() {
     setEmployeeData(null)
     setFetchAgain(!!response)
     setOpenEmployeeDialog(false)
+    fetchEmployees()
   }
 
   const handleOpenConfirmDialog = (data) => {
@@ -38,11 +37,13 @@ export function EmployeeTable() {
   const handleCloseConfirmDialog = async (response) => {
     if (response) {
       try {
-        await API.delete(`/employees/${employeeData.id}`)
-        setFetchAgain(true)
+        const response = await API.delete(`/employees/${employeeData.id}`)
+        if (response) {
+          fetchEmployees()
+        }
       } catch(err) {
-        setFetchAgain(false)
         console.log(err)
+        setFetchAgain(false)
       }
     }
 
@@ -62,7 +63,6 @@ export function EmployeeTable() {
   }
 
   useEffect(() => {
-    console.log(fetchAgain)
     if (fetchAgain) {
       fetchEmployees()
     }

@@ -60,6 +60,14 @@ export function EmployeeDialog({ open, closeDialog, data }) {
       setCpf(data.cpf ? data.cpf : '')
       setBirthDate(data.birthDate ? data.birthDate : new Date())
       setStartDate(data.startDate ? data.startDate : new Date())
+    } else {
+      setGender('')
+      setEmail('')
+      setTeam('')
+      setName('')
+      setCpf('')
+      setBirthDate(new Date())
+      setStartDate(new Date())
     }
   }, [data])
 
@@ -86,11 +94,16 @@ export function EmployeeDialog({ open, closeDialog, data }) {
 
     try {
       if (data && data.id) {
-        await API.put(`/employees/${data.id}`, payload)
+        const response = await API.put(`/employees/${data.id}`, payload)
+        if (response) {
+          closeDialog(true)
+        }
       } else {
-        await API.post('/employees', payload)
+        const response = await API.post('/employees', payload)
+        if (response) {
+          closeDialog(true)
+        }
       }
-      closeDialog(true)
     } catch(err) {
       const message = err.response.data.error 
       if (message) {
