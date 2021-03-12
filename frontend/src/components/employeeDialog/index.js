@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import swal from 'sweetalert'
 import PropTypes from 'prop-types'
 import { Button } from '../button'
 import Checked from '../../assets/svg/checked.svg'
@@ -11,7 +12,6 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-// import moment from 'moment'
 
 import API from '../../services/api'
 
@@ -58,8 +58,6 @@ export function EmployeeDialog({ open, closeDialog, data }) {
       setTeam(data.team ? data.team : '')
       setName(data.name ? data.name : '')
       setCpf(data.cpf ? data.cpf : '')
-      // setBirthDate(data.birthDate ? moment(data.birthDate).format('DD/MM/YYYY') : new Date())
-      // setStartDate(data.startDate ? moment(data.startDate, 'MM/YYYY') : new Date())
       setBirthDate(data.birthDate ? data.birthDate : new Date())
       setStartDate(data.startDate ? data.startDate : new Date())
     }
@@ -82,8 +80,6 @@ export function EmployeeDialog({ open, closeDialog, data }) {
       email,
       cpf,
       team,
-      // startDate: moment(startDate).format('MM/YYYY'),
-      // birthDate: moment(birthDate).format('DD/MM/YYYY'),
       startDate,
       birthDate,
     }
@@ -96,9 +92,10 @@ export function EmployeeDialog({ open, closeDialog, data }) {
       }
       closeDialog(true)
     } catch(err) {
-      closeDialog(false)
-      console.log(err)
-      // throw err
+      const message = err.response.data.error 
+      if (message) {
+        swal({ title: message, icon: 'warning'})
+      }
     }
   }
 
