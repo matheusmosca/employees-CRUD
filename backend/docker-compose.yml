@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  nutcachedb:
+    image: postgres:13.2-alpine
+    restart: always
+    environment: 
+      POSTGRES_DB: nutcacheDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: 
+      - 5493:5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "postgres@postgres.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16542:80"
+    depends_on:
+      - nutcachedb
