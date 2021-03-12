@@ -5,16 +5,16 @@ import (
 )
 
 type Employee struct {
-	ID        int       `gorm:primaryKey`
-	Name      string    `gorm:not null`
-	Email     string    `gorm:not null; unique`
-	Gender    string    `gorm:not null`
-	Team      string    `gorm:null`
-	CPF       string    `gorm:unique;not null`
-	StartDate time.Time `gorm:not null`
-	BirthDate time.Time `gorm:not null`
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID        int       `gorm:"primaryKey" json:"id"`
+	Name      string    `gorm:"not null" json:"name"`
+	Email     string    `gorm:"not null; unique" json:"email"`
+	Gender    string    `gorm:"not null" json:"gender"`
+	Team      string    `gorm:"null" json:"team"`
+	CPF       string    `gorm:"unique;not null" json:"cpf"`
+	StartDate time.Time `gorm:"not null" json:"startDate"`
+	BirthDate time.Time `gorm:"not null" json:"birthDate"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 func NewEmployee(name, email, gender, team, CPF string, birthDate, startDate time.Time) (*Employee, error) {
@@ -30,7 +30,7 @@ func NewEmployee(name, email, gender, team, CPF string, birthDate, startDate tim
 		UpdatedAt: time.Now(),
 	}
 
-	err := e.validate()
+	err := e.Validate()
 	if err != nil {
 		return nil, err
 	}
@@ -38,7 +38,7 @@ func NewEmployee(name, email, gender, team, CPF string, birthDate, startDate tim
 	return &e, nil
 }
 
-func (e *Employee) validate() error {
+func (e *Employee) Validate() error {
 	switch {
 	case e.Name == "":
 		return ErrInvalidName

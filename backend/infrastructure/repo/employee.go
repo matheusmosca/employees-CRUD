@@ -36,7 +36,7 @@ func (r employeeRepo) Create(ctx context.Context, employee *model.Employee) erro
 func (r employeeRepo) GetAll(ctx context.Context) ([]*model.Employee, error) {
 	var employees []*model.Employee
 
-	err := r.db.Find(employees).Error
+	err := r.db.Find(&employees).Error
 	if err != nil {
 		return nil, err
 	}
@@ -44,13 +44,13 @@ func (r employeeRepo) GetAll(ctx context.Context) ([]*model.Employee, error) {
 }
 
 func (r employeeRepo) GetByID(ctx context.Context, ID int) (*model.Employee, error) {
-	var employee *model.Employee
+	var employee model.Employee
 
 	err := r.db.First(&employee, ID).Error
 	if err != nil {
 		return nil, err
 	}
-	return employee, nil
+	return &employee, nil
 }
 
 func (r employeeRepo) Update(ctx context.Context, employee *model.Employee) error {
