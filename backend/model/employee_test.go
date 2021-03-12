@@ -9,10 +9,10 @@ import (
 )
 
 func TestNewEmployee(t *testing.T) {
-	e, err := model.NewEmployee("George", "George@g.com", "male", "Backend", "11122233312", time.Now(), time.Now())
+	e, err := model.NewEmployee("George", "George@g.com", "Male", "Backend", "11122233312", time.Now(), time.Now())
 	assert.Equal(t, e.Name, "George")
 	assert.Equal(t, e.Email, "George@g.com")
-	assert.Equal(t, e.Gender, "male")
+	assert.Equal(t, e.Gender, "Male")
 	assert.Equal(t, e.Team, "Backend")
 	assert.Equal(t, e.CPF, "11122233312")
 
@@ -41,7 +41,7 @@ func TestValidate(t *testing.T) {
 		{
 			name:      "",
 			email:     "em@em.com",
-			gender:    "male",
+			gender:    "Male",
 			CPF:       "22233322214",
 			birthDate: time.Now(),
 			startDate: time.Now(),
@@ -51,7 +51,7 @@ func TestValidate(t *testing.T) {
 		{
 			name:      "emily",
 			email:     "",
-			gender:    "male",
+			gender:    "Male",
 			CPF:       "22233322214",
 			birthDate: time.Now(),
 			startDate: time.Now(),
@@ -71,7 +71,7 @@ func TestValidate(t *testing.T) {
 		{
 			name:      "emily",
 			email:     "em@em.com",
-			gender:    "male",
+			gender:    "Male",
 			CPF:       "123213",
 			birthDate: time.Now(),
 			startDate: time.Now(),
@@ -81,7 +81,7 @@ func TestValidate(t *testing.T) {
 		{
 			name:      "emily",
 			email:     "em@em.com",
-			gender:    "male",
+			gender:    "Male",
 			CPF:       "22233322214",
 			birthDate: time.Now(),
 			startDate: time.Now(),

@@ -9,6 +9,7 @@ import (
 	"github.com/matheusmosca/nutcache/infrastructure/repo"
 	"github.com/matheusmosca/nutcache/model"
 	"github.com/matheusmosca/nutcache/service"
+	"github.com/rs/cors"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -28,7 +29,12 @@ func main() {
 
 	handler.MakeEmployeeEndpoints(r, employeeService)
 
-	fmt.Println("Listening in 3000...")
+	fmt.Println("Listening in 3030...")
 
-	http.ListenAndServe(":3000", r)
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE"},
+	})
+
+	http.ListenAndServe(":3030", c.Handler(r))
 }

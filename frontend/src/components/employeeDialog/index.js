@@ -11,7 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import moment from 'moment'
+// import moment from 'moment'
 
 import API from '../../services/api'
 
@@ -52,14 +52,16 @@ export function EmployeeDialog({ open, closeDialog, data }) {
   const classes = useStyles()
 
   useEffect(() => {
-    if (data && data._id) {
+    if (data && data.id) {
       setGender(data.gender ? data.gender : '')
       setEmail(data.email ? data.email : '')
       setTeam(data.team ? data.team : '')
       setName(data.name ? data.name : '')
       setCpf(data.cpf ? data.cpf : '')
-      setBirthDate(data.birthDate ? moment(data.birthDate).format('DD/MM/YYYY') : new Date())
-      setStartDate(data.startDate ? moment(data.startDate, 'MM/YYYY') : new Date())
+      // setBirthDate(data.birthDate ? moment(data.birthDate).format('DD/MM/YYYY') : new Date())
+      // setStartDate(data.startDate ? moment(data.startDate, 'MM/YYYY') : new Date())
+      setBirthDate(data.birthDate ? data.birthDate : new Date())
+      setStartDate(data.startDate ? data.startDate : new Date())
     }
   }, [data])
 
@@ -79,21 +81,24 @@ export function EmployeeDialog({ open, closeDialog, data }) {
       gender,
       email,
       cpf,
-      team: team ? team : null,
-      startDate: moment(startDate).format('MM/YYYY'),
-      birthDate: moment(birthDate).format('DD/MM/YYYY'),
+      team,
+      // startDate: moment(startDate).format('MM/YYYY'),
+      // birthDate: moment(birthDate).format('DD/MM/YYYY'),
+      startDate,
+      birthDate,
     }
 
     try {
-      if (data && data._id) {
-        await API.put(`/employees/${data._id}`, payload)
+      if (data && data.id) {
+        await API.put(`/employees/${data.id}`, payload)
       } else {
         await API.post('/employees', payload)
       }
       closeDialog(true)
     } catch(err) {
       closeDialog(false)
-      throw err
+      console.log(err)
+      // throw err
     }
   }
 
@@ -106,7 +111,7 @@ export function EmployeeDialog({ open, closeDialog, data }) {
             style={CloseIconStyle}
             handleClick={() => closeDialog(false)}
           />
-          <h2 className="employeeDialog__content__title">{ data && data._id ? 'Update employee' : 'New employee' }</h2>
+          <h2 className="employeeDialog__content__title">{ data && data.id ? 'Update employee' : 'New employee' }</h2>
           <form onSubmit={ handleSubmit } className="employeeDialog__content__form" action="">
             <TextField
               required

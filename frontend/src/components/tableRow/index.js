@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import PencilSVG from '../../assets/svg/pencil.svg'
 import TrashSVG from '../../assets/svg/trash.svg'
 import { Icon } from '../icon'
+import moment from 'moment'
 
 import './styles.scss'
 
@@ -30,7 +31,7 @@ export function TableRow(props) {
         </td>
         <td className="tableRow__item">{name}</td>
         <td className="tableRow__item">{email}</td>
-        <td className="tableRow__item">{startDate}</td>
+        <td className="tableRow__item">{moment(startDate).format('DD/MM/YYYY')}</td>
         <td className="tableRow__item">{team}</td>
       </tr>
     </>

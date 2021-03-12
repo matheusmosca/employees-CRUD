@@ -46,8 +46,10 @@ func (e *Employee) Validate() error {
 		return ErrInvalidEmail
 	case len(e.CPF) != 11:
 		return ErrInvalidCPF
-	case e.Gender == "":
+	case e.Gender == "" || (e.Gender != "Female" && e.Gender != "Male" && e.Gender != "Other"):
 		return ErrInvalidGender
+	case e.Team != "" && (e.Team != "Backend" && e.Team != "Frontend" && e.Team != "Mobile"):
+		return ErrInvalidTeam
 	default:
 		return nil
 	}

@@ -16,7 +16,7 @@ export function EmployeeTable() {
   const [fetchAgain, setFetchAgain] = useState(true)
 
   const handleOpenEmployeeDialog = (data) => { 
-    if (data && data._id) {
+    if (data && data.id) {
       setEmployeeData(data)
     }
     setOpenEmployeeDialog(true)
@@ -29,7 +29,7 @@ export function EmployeeTable() {
   }
 
   const handleOpenConfirmDialog = (data) => {
-    if (data && data._id) {
+    if (data && data.id) {
       setEmployeeData(data)
     }
     setOpenConfirmDialog(true)
@@ -38,11 +38,11 @@ export function EmployeeTable() {
   const handleCloseConfirmDialog = async (response) => {
     if (response) {
       try {
-        await API.delete(`/employees/${employeeData._id}`)
+        await API.delete(`/employees/${employeeData.id}`)
         setFetchAgain(true)
       } catch(err) {
         setFetchAgain(false)
-        throw err
+        console.log(err)
       }
     }
 
@@ -53,13 +53,11 @@ export function EmployeeTable() {
   const fetchEmployees = async () => {
     try {
       const response = await API.get('/employees')
-  
-      if (response && response.data) {
-        setEmployees(response.data)
+      if (response && response.data && response.data.success) {
+        setEmployees(response.data.data)
       }
     } catch(err) {
       console.log(err)
-      throw err
     }
   }
 
@@ -95,7 +93,7 @@ export function EmployeeTable() {
           </tr>
           { employees && employees.map(data => (
             <TableRow
-              key={data._id}
+              key={data.id}
               data={data}
               handleOpenConfirmDialog={handleOpenConfirmDialog}
               handleOpenEmployeeDialog={handleOpenEmployeeDialog}

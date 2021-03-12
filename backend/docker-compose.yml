@@ -1,6 +1,13 @@
 version: "3.1"
 
 services:
+  # nutcacheapp:
+  #   container_name: nutcacheapp
+  #   build: .
+  #   image_name: nutcacheappimage
+  #   working_directory: ./
+  #   ports: 
+  #     - 8080:8080
   nutcachedb:
     image: postgres:13.2-alpine
     restart: always
